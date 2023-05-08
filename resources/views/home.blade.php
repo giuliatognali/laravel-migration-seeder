@@ -15,13 +15,15 @@
             @foreach ($trains as $train)
                 <ul class='card col-3 m-2'>
                     <li>{{ $train->train_code }} - {{$train->company}}</li>
-                    <li>{{ $train->departure_station }} -{{ $train->departure_time }} </li>
-                    <li>{{ $train->arrival_station }} - {{ $train->arrival_time }}</li>              
+                    <li> <h5 class='pt-2'>{{ $train->departure_station }}</h5> 
+                         {{\Carbon\Carbon::parse ($train->departure_time)->locale('it_IT')->isoFormat('LLLL');}} </li>
+                    <li> <h5 class='pt-2'>{{ $train->arrival_station }}</h5> 
+                        {{\Carbon\Carbon::parse ($train->departure_time)->locale('it_IT')->isoFormat('LLLL');}}</li>     
                 </ul>
             @endforeach
         </div>
     </div>
-
+{{-- \Carbon\Carbon::parse ($train->departure_time)->isoFormat('LLLL'); --}}
 </body>
 
 </html>
