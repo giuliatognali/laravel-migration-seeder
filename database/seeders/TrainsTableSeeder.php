@@ -6,6 +6,7 @@ use App\Models\Train;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Support\Carbon;
 
 class TrainsTableSeeder extends Seeder
 {
@@ -21,8 +22,8 @@ class TrainsTableSeeder extends Seeder
             $newTrain = new Train();
             $newTrain->departure_station = $faker->city();
             $newTrain->arrival_station = $faker->city();
-            $newTrain->departure_time = $faker->dateTimeInInterval('-1day', '+3 days');
-            $newTrain->arrival_time = $faker->dateTimeInInterval('-1 day', '+3 days');
+            $newTrain->departure_time = $faker->dateTimeBetween('-1day', '+3 days');
+            $newTrain->arrival_time = Carbon::parse($newTrain->departure_time)->addHours(rand(1,12));
             $newTrain->departure_platform = $faker->numberBetween(1, 10);
             $newTrain->arrival_platform = $faker->numberBetween(1, 10);
             $newTrain->company = $faker->randomElement(['Trenitalia', 'Trenord', 'Italo', 'TGV']);;
